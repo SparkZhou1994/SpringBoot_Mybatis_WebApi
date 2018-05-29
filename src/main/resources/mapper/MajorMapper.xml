@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="spark.webapi.dao.MajorMapper" >
+  <resultMap id="BaseResultMap" type="spark.webapi.entity.Major" >
+    <id column="major_no" property="majorNo" jdbcType="INTEGER" />
+    <result column="major_name" property="majorName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    major_no, major_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from major
+    where major_no = #{majorNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from major
+    where major_no = #{majorNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="spark.webapi.entity.Major" >
+    insert into major (major_no, major_name)
+    values (#{majorNo,jdbcType=INTEGER}, #{majorName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="spark.webapi.entity.Major" >
+    update major
+    set major_name = #{majorName,jdbcType=VARCHAR}
+    where major_no = #{majorNo,jdbcType=INTEGER}
+  </update>
+</mapper>

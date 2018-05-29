@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="spark.webapi.dao.StudentMapper" >
+  <resultMap id="BaseResultMap" type="spark.webapi.entity.Student" >
+    <id column="stu_no" property="stuNo" jdbcType="INTEGER" />
+    <result column="stu_name" property="stuName" jdbcType="VARCHAR" />
+    <result column="major_no" property="majorNo" jdbcType="INTEGER" />
+    <result column="role" property="role" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    stu_no, stu_name, major_no, role
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where stu_no = #{stuNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from student
+    where stu_no = #{stuNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="spark.webapi.entity.Student" >
+    insert into student (stu_no, stu_name, major_no, 
+      role)
+    values (#{stuNo,jdbcType=INTEGER}, #{stuName,jdbcType=VARCHAR}, #{majorNo,jdbcType=INTEGER}, 
+      #{role,jdbcType=CHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="spark.webapi.entity.Student" >
+    update student
+    set stu_name = #{stuName,jdbcType=VARCHAR},
+      major_no = #{majorNo,jdbcType=INTEGER},
+      role = #{role,jdbcType=CHAR}
+    where stu_no = #{stuNo,jdbcType=INTEGER}
+  </update>
+</mapper>
