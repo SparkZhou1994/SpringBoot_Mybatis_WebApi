@@ -10,26 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50560
 File Encoding         : 65001
 
-Date: 2018-05-28 09:50:46
+Date: 2018-05-30 11:07:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for `class`
--- ----------------------------
-DROP TABLE IF EXISTS `class`;
-CREATE TABLE `class` (
-  `class_no` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `class_name` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`class_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of class
--- ----------------------------
-INSERT INTO `class` VALUES ('1', '软件');
-INSERT INTO `class` VALUES ('2', '旅游');
 
 -- ----------------------------
 -- Table structure for `course`
@@ -46,6 +30,22 @@ CREATE TABLE `course` (
 -- ----------------------------
 INSERT INTO `course` VALUES ('1', '高数');
 INSERT INTO `course` VALUES ('2', '宏观经济');
+
+-- ----------------------------
+-- Table structure for `major`
+-- ----------------------------
+DROP TABLE IF EXISTS `major`;
+CREATE TABLE `major` (
+  `major_no` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `major_name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`major_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of major
+-- ----------------------------
+INSERT INTO `major` VALUES ('1', '软件');
+INSERT INTO `major` VALUES ('2', '旅游');
 
 -- ----------------------------
 -- Table structure for `score`
@@ -80,11 +80,11 @@ DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
   `stu_no` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `stu_name` varchar(20) DEFAULT NULL,
-  `class_no` int(10) unsigned DEFAULT NULL,
+  `major_no` int(10) unsigned DEFAULT NULL,
   `role` char(1) DEFAULT NULL,
   PRIMARY KEY (`stu_no`),
-  KEY `class_no` (`class_no`),
-  CONSTRAINT `student_ibfk_1` FOREIGN KEY (`class_no`) REFERENCES `class` (`class_no`)
+  KEY `major_no` (`major_no`),
+  CONSTRAINT `student_ibfk_1` FOREIGN KEY (`major_no`) REFERENCES `major` (`major_no`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
