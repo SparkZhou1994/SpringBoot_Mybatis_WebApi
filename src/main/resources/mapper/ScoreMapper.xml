@@ -33,4 +33,22 @@
     where stu_no = #{stuNo,jdbcType=INTEGER}
       and course_no = #{courseNo,jdbcType=INTEGER}
   </update>
+  <select id="selectCourseMax" resultType="spark.webapi.entity.Score">
+    select course_no,max(score)as score from score group by course_no 
+  </select>
+  <select id="selectCourseMin" resultType="spark.webapi.entity.Score">
+  	select course_no,min(score)as score from score group by course_no
+  </select>
+  <select id="selectCourseAvg" resultType="spark.webapi.entity.Score">
+  	select course_no,avg(score)as score from score group by course_no
+  </select>
+  <select id="selectMajorMax" resultType="spark.webapi.entity.Score">
+  	select major_no,max(score)as score from score join student on score.stu_no=student.stu_no GROUP BY major_no
+  </select>
+  <select id="selectMajorMinx" resultType="spark.webapi.entity.Score">
+  	select major_no,min(score)as score from score join student on score.stu_no=student.stu_no GROUP BY major_no
+  </select>
+  <select id="selectMajorAvg" resultType="spark.webapi.entity.Score">
+  	select major_no,avg(score)as score from score join student on score.stu_no=student.stu_no GROUP BY major_no
+  </select>
 </mapper>

@@ -1,5 +1,7 @@
 package spark.webapi.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -77,6 +79,42 @@ public class ScoreServiceImpl implements ScoreService{
 		}else{
 			throw new RuntimeException("成绩信息不能为空！");
 		}
+	}
+
+	@Override
+	public List<Score> selectCourseMax() {
+		// TODO Auto-generated method stub
+		return scoreMapper.selectCourseMax();
+	}
+
+	@Override
+	public List<Score> selectCourseMin() {
+		// TODO Auto-generated method stub
+		return scoreMapper.selectCourseMin();
+	}
+
+	@Override
+	public List<Score> selectCourseAvg() {
+		// TODO Auto-generated method stub
+		return scoreMapper.selectCourseAvg();
+	}
+
+	@Override
+	public List<Score> selectMajorMax() {
+		// TODO Auto-generated method stub
+		return scoreMapper.selectMajorMax();
+	}
+
+	@Override
+	public List<Score> selectMajorMin() {
+		// TODO Auto-generated method stub
+		return scoreMapper.selectMajorMin();
+	}
+
+	@Override
+	public List<Score> selectMajorAvg() {
+		// TODO Auto-generated method stub
+		return scoreMapper.selectMajorAvg();
 	}
 
 }
